@@ -1,0 +1,65 @@
+body{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display:flex;
+    justify-content: center;
+    position: absolute;
+    
+    font-family: 'Varela Round', sans-serif;
+    background-color: rgb(27, 1, 39);
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+.title{
+    text-align: center;
+    color: white;
+    font-family: 'Monoton', cursive;
+    font-size: 70px;
+    margin: 20px 0;
+
+    text-shadow: 0 0 5px #5bf04d, 0 0 6px #1ee90c, 0 0 9px #1dd404, 0 0 11px #029e0a, 0 0 15px #149903;
+}
+.redMark{
+    color: rgb(252, 203, 195);
+    text-shadow: 0 0 5px #fa0404, 0 0 10px #e00404, 0 0 15px #be0303, 0 0 20px #a10101, 0 0 20px #8d0202;
+}
+.blueMark{
+    color:rgb(207, 246, 252);
+    text-shadow: 0 0 5px #0852db, 0 0 10px #074ac7, 0 0 15px #063faa, 0 0 20px #05368f, 0 0 20px #042c77;
+}
+.gameBoard{
+    display: grid;
+    box-sizing: border-box;
+    width: 400px;
+    height:400px;
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(3, 1fr);
+    
+    gap: 15px;
+    /* box-shadow: 0 0 5px #fafd3a, 0 0 10px #f9fd17, 0 0 15px #ecf005, 0 0 20px #d4d803, 0 0 20px #acaf02;
+    border-radius: 10px;; */
+}
+.tile{
+    font-size: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: solid 2px white;
+    box-shadow: 0 0 5px #fafd3a, 0 0 10px #f9fd17, 0 0 15px #ecf005, 0 0 20px #d4d803, 0 0 20px #acaf02;
+    border-radius: 10px;
+    transition: transform 0.15s ease-in-out;
+}
+.tile:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+    box-shadow: 0 0 5px #5bf04d, 0 0 6px #1ee90c, 0 0 9px #1dd404, 0 0 11px #029e0a, 0 0 15px #149903;
+    
+}
+.footer{
+    display: none;
+}
