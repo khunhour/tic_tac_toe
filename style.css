@@ -12,13 +12,25 @@ body{
     font-family: 'Varela Round', sans-serif;
     background-color: rgb(27, 1, 39);
 }
+.result{
+    display:none;
+    flex-direction: column;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: rgba(0, 0, 0, 0.699);
+}
 .container{
     width: 550px;
     display: flex;
     flex:0 0 auto;
     flex-direction: column;
     align-items:center;
-    background-color: red;
+    background-color: rgb(27, 1, 39);
 }
 .title{
     text-align: center;
@@ -48,10 +60,12 @@ body{
 }
 
 .redMark{
+    font-size: 30px;
     color: rgb(252, 203, 195);
     text-shadow: 0 0 5px #fa0404, 0 0 10px #e00404, 0 0 15px #be0303, 0 0 20px #a10101, 0 0 20px #8d0202;
 }
 .blueMark{
+    font-size: 30px;
     color:rgb(207, 246, 252);
     text-shadow: 0 0 5px #0852db, 0 0 10px #074ac7, 0 0 15px #063faa, 0 0 20px #05368f, 0 0 20px #042c77;
 }
@@ -62,10 +76,7 @@ body{
     height:400px;
     grid-template-columns: repeat(3,1fr);
     grid-template-rows: repeat(3, 1fr);
-    
     gap: 15px;
-    /* box-shadow: 0 0 5px #fafd3a, 0 0 10px #f9fd17, 0 0 15px #ecf005, 0 0 20px #d4d803, 0 0 20px #acaf02;
-    border-radius: 10px;; */
 }
 .tile{
     font-size: 100px;
@@ -96,15 +107,32 @@ body{
     display: flex;
     flex-direction: column;
     font-family: 'Pacifico', cursive;
-    flex: 1 1 0;
+    flex:1;
 }
 .glow{
+    font-family: 'Pacifico', cursive;;
     text-align: center;
     color: white;
     font-size: 30px;
     margin: 20px 0;
     box-sizing: border-box;
     text-shadow: 0 0 5px #fa40fa, 0 0 6px #fa1ffa, 0 0 9px #f804f8, 0 0 11px #cc03cc, 0 0 15px #a803a8;
+}
+.restart{
+    background-color: purple;
+    padding: 10px 50px;
+    margin: 0 50px;
+    border-radius: 20px;
+    border: solid 2px white;
+    box-shadow:  0 0 5px #fa40fa, 0 0 6px #fa1ffa, 0 0 9px #f804f8, 0 0 11px #cc03cc, 0 0 15px #a803a8;
+    border-radius: 10px;
+}
+button{
+    transition: transform 0.15s ease-in-out;
+}
+button:hover{
+    cursor: pointer;
+    transform: scale(1.05);
 }
 .footer{
     display: none;

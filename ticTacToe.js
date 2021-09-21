@@ -1,8 +1,9 @@
 const module = (function(){
     let player1Scores=[];
     let player2Scores=[];
-    let winner;
+    let winner="";
     let player1 = true;         //check player1 turn or not
+    let tileArray = [1, 2, 3, 4, 5, 6, 7,8 ,9];
 
     const winningCases = {
         case1: [1,2,3],
@@ -16,8 +17,9 @@ const module = (function(){
     }
 
     const tiles = document.querySelectorAll('.tile');
-    const restartButton = document.getElementById("restart");
-    
+    const restartButtons = document.querySelectorAll('.restart');
+    const announceText = document.querySelector(".announceText");
+    const result = document.querySelector('.result');
 
     const initiateGame =() =>{
         tileEventListener();
@@ -25,13 +27,15 @@ const module = (function(){
 
     const tileEventListener = () =>{
         tiles.forEach((tile) => {
-            tile.addEventListener('click', markTile);
+            tile.addEventListener('click', markPlayerTile);
         });
-        restartButton.addEventListener("click", restartGame);
+        restartButtons.forEach((button) => {
+            button.addEventListener("click", restartGame);
+        });
     };
     const removeEvent = () =>{
         tiles.forEach((tile) => {
-            tile.removeEventListener('click', markTile);
+            tile.removeEventListener('click', markPlayerTile);
             tile.classList.remove("redM")
         });
     };
@@ -42,43 +46,66 @@ const module = (function(){
         });
     }
     
-    const markTile = function(e){
-        let tileNum = e.target.id;
-        
+    const markPlayerTile = function(e){
+        let tileNum = Number(e.target.id);
+        console.log("x's tile Num:" + tileNum);
         const tile = document.getElementById(`${tileNum}`);
-        
-        if(player1 === true){
+
+        if(player1 === true){                   //marking player1 move
+            removeArrayElement(tileNum);
+            console.log("current Array : " + tileArray);
+
             tile.textContent="X";
             tile.classList.add("redMark");
-            player1Scores.push(Number(tileNum));        //push index position to player1Scores to store as an array
+            player1Scores.push(tileNum);        //push index position to player1Scores to store as an array
             winner = checkWin(player1Scores);
 
-        }else{
-            tile.textContent="O";
-            tile.classList.add("blueMark");
-            player2Scores.push(Number(tileNum));        ////push index position to player2Scores to store as an array
-            winner = checkWin(player2Scores);
+            tile.removeEventListener('click', markPlayerTile);
+            displayResult(winner);
+
+            player1 = !player1;
+            
+            markComputerTile();  //passing turn to computer
+            
         }
-        tile.removeEventListener('click', markTile);
-        console.log(winner);
-        console.log(player1Scores);
-        console.log(player2Scores);
+    };
+    const markComputerTile = () =>{
+        tileNum = pickRandomTile(tileArray);
+        if(tileNum === undefined){              //incase at the end arraylength =0 cannot find random number means game end so no need
+            return;
+        }
+        console.log("o's tile Num:" + tileNum);
+        const tile = document.getElementById(`${tileNum}`);
+
+        removeArrayElement(tileNum);
+        console.log("current Array : " + tileArray);
+        tile.textContent="O";
+        tile.classList.add("blueMark");
+        player2Scores.push(tileNum);        ////push index position to player2Scores to store as an array
+        winner = checkWin(player2Scores);
+        
+        tile.removeEventListener('click', markPlayerTile);
+        displayResult(winner);
+        player1 = !player1;
+    };
+
+
+    const displayResult = (winner) => {
         if(winner === true && player1 === true){
+            result.style.cssText = "display:flex;";
             removeEvent();
-            alert("player1 has won");
+            announceText.textContent = "The Winner is X";
         }
         else if(winner === true && player1 === false){
+            result.style.cssText = "display:flex;";
             removeEvent();
-            alert("player2 has won");
+            announceText.textContent = "The Winner is O";
         }
         else if(winner === false && player1Scores.length === 5 && player2Scores.length ===4){ 
-            alert("It's a Draw")
+            result.style.cssText = "display:flex;";
+            announceText.textContent = "It's a Draw";
         }
-        player1 = !player1;
-
-        
-        // console.log(typeof(tileNum));
-    };
+    }
 
     const checkWin = (player) => {
         for(let i=1 ; i < 9; i++){             //loop over the 8 cases for winning
@@ -96,33 +123,35 @@ const module = (function(){
     }
 
     const restartGame = (e) =>{
-
+        result.style.cssText = "display:none;";
         removeMarkAndClass();
         tileEventListener();
 
         player1Scores=[];
         player2Scores=[];
+        tileArray=[1,2,3,4,5,6,7,8,9];
         player1 = true;
         winner ="";
     }
-    // const checkDraw = () => {
-    //     tiles.forEach((tile) => {
-    //         if(tile.textContent !== ""){
-    //             continue;
-    //         }
-    //         else
-    //     });
-    // }
-    return{initiateGame, winningCases, checkWin,player1Scores, player2Scores};
+    const removeArrayElement = (value) =>{
+        let index = tileArray.indexOf(value);   //find index of value
+        tileArray.splice(index, 1);             //remove that value from array
+    }
+    const pickRandomTile = (tileArray) =>{
+        let randomIndex = Math.floor(Math.random()*(tileArray.length-1));
+        console.log("length: " +tileArray.length);
+        console.log("choose index: "+randomIndex);
+        
+        console.log(tileArray[randomIndex]);
+        return tileArray[randomIndex];
+    }
+    return{initiateGame, winningCases, tileArray, checkWin,player1Scores, player2Scores,winner
+    };
 })();
 
 module.initiateGame();
 
 const playerScores = (playerNum, position) =>{
 
-   
 
 };
-
-
-//use array.includes to check
