@@ -10,17 +10,32 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Varela+Round&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"> 
+    
+    <link rel="icon" type="icon/text" href="images/tictactoe.png">
     <title>Tic Tac Toe</title>
 </head>
 <body>
     <div class="result">
-        <div class="announceText glow">Congrats</div>
+        <div class="announceText glow"></div>
         <button class="restart glow">Restart</button>
     </div>
     <div class="leftPane">
-        <div class="player1 redMark">Player1: X</div>
-        <div class="vs glow">vs</div>
-        <div class="player2 blueMark">Player2: O</div>
+        <div class="chooseMode glow">
+            <div class="glow">Choose Mode:</div>
+            <div class="mode">
+                <button id="easy" class="modeButton glow">EASY</button>
+                <button id="hard" class="modeButton glow">HARD</button>
+            </div>
+        </div>
+        <div class="chooseMark glow">
+            <div>Choose Mark:</div>
+            <div class="marker">
+                <button id="X" class="markButton glow">X</button>
+                <button id="O" class="markButton glow">O</button>
+            </div>
+        </div>
+        <button class="restart glow">Restart</button>
+        <div></div>
     </div>
     <div class="container">
         <div class="title">TIC-TAC-TOE</div>
@@ -35,10 +50,6 @@
             <div id="7" class="tile"></div>
             <div id="8" class="tile"></div>
         </div>
-    </div>
-    <div class ="rightPane">
-        <div class="mode glow">hello</div>
-        <button class="restart glow">Restart</button>
     </div>
 
 

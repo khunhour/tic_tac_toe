@@ -31,6 +31,7 @@ body{
     flex-direction: column;
     align-items:center;
     background-color: rgb(27, 1, 39);
+    justify-self:center;
 }
 .title{
     text-align: center;
@@ -101,7 +102,19 @@ body{
     align-items: center;
     justify-content: space-around;
     font-family: 'Pacifico', cursive;
-    flex: 1 1 0;
+    flex: 0 1 0;
+    
+}
+.chooseMark, .chooseMode{
+    border: solid 5px white;
+    display: flex;
+    flex-direction: column;
+}
+.marker, .mode{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
 }
 .rightPane{
     display: flex;
@@ -118,14 +131,16 @@ body{
     box-sizing: border-box;
     text-shadow: 0 0 5px #fa40fa, 0 0 6px #fa1ffa, 0 0 9px #f804f8, 0 0 11px #cc03cc, 0 0 15px #a803a8;
 }
-.restart{
+.restart, .markButton, .modeButton{
     background-color: purple;
-    padding: 10px 50px;
-    margin: 0 50px;
+    padding: 10px 30px;;
+    margin: 0 15px;
     border-radius: 20px;
     border: solid 2px white;
     box-shadow:  0 0 5px #fa40fa, 0 0 6px #fa1ffa, 0 0 9px #f804f8, 0 0 11px #cc03cc, 0 0 15px #a803a8;
     border-radius: 10px;
+
+    
 }
 button{
     transition: transform 0.15s ease-in-out;
