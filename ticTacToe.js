@@ -1,6 +1,7 @@
 const module = (function(){
     let winner="";
     let currentPlayer = "human";         //human moves first
+    let currentMode = "hard";
     let currentBoard = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     let aiMark = "O";
     let humanMark ="X";
@@ -18,22 +19,60 @@ const module = (function(){
 
     const tiles = document.querySelectorAll('.tile');
     const restartButtons = document.querySelectorAll('.restart');
-    const announceText = document.querySelector(".announceText");
+    const modes = document.querySelector(".mode");
+    const marks = document.querySelector(".marker");
     const result = document.querySelector('.result');
+    const announceText = document.querySelector(".announceText");
 
     const initiateGame =() =>{
         tileEventListener();
+        buttonEventListener();
     }
 
     const tileEventListener = () =>{
         tiles.forEach((tile) => {
             tile.addEventListener('click', markPlayerTile);
         });
+    };
+
+    const buttonEventListener = () =>{
+        marks.addEventListener('click', chooseMark);
+        modes.addEventListener('click', chooseMode);
         restartButtons.forEach((button) => {
             button.addEventListener("click", restartGame);
         });
-    };
-
+    }
+    const chooseMark = (e) =>{
+        const oMark = document.querySelector(`#${e.target.id}`);
+        
+        if(e.target.id === "X"){
+            marks.firstElementChild.classList.add("purple");
+            marks.lastElementChild.classList.remove("purple");
+            humanMark = "X";
+            aiMark = "O";
+        }
+        else if(e.target.id = "O"){
+            marks.firstElementChild.classList.remove("purple");
+            marks.lastElementChild.classList.add("purple");
+            humanMark = "O";
+            aiMark = "X";
+        }
+        restartGame();
+    }
+    const chooseMode = (e) => {
+        if(e.target.id === "easy"){
+            modes.firstElementChild.classList.add("purple");
+            modes.lastElementChild.classList.remove("purple");
+            currentMode = "easy";
+        }
+        else if(e.target.id === "hard"){
+            console.log("hard");
+            modes.firstElementChild.classList.remove("purple");
+            modes.lastElementChild.classList.add("purple");
+            currentMode = "hard";
+        }
+        restartGame();
+    }
     const removeEvent = () =>{
         tiles.forEach((tile) => {
             tile.removeEventListener('click', markPlayerTile);
@@ -64,8 +103,15 @@ const module = (function(){
     };
 
     const markComputerTile = () =>{
-        let bestPlayInfo = minimax(currentBoard, 0 ,aiMark);       //get the best move for the Ai mark(bestPlayerInfo={index:?, score:?})
-        tileNum = bestPlayInfo.index;
+        let tileNum;
+        if(currentMode === "hard"){
+            let bestPlayInfo = minimax(currentBoard, 0 ,aiMark);       //get the best move for the Ai mark(bestPlayerInfo={index:?, score:?})
+            tileNum = bestPlayInfo.index;
+        }
+        else if(currentMode === "easy"){                               //easy mode just let the computer pick a random remaining tile
+            tileNum = pickRandomTile(findRemainingTile(currentBoard));
+            console.log(tileNum);
+        }
         const tile = document.getElementById(`${tileNum}`);
         
         if(tileNum === undefined){                              //incase at the end, arraylength =0 cannot find valid move(to avoid errors)
@@ -87,12 +133,12 @@ const module = (function(){
         if(winner === true && currentPlayer === "human"){
             result.style.cssText = "display:flex;";
             removeEvent();
-            announceText.textContent = "The Winner is X";
+            announceText.textContent = "You Win!";
         }
         else if(winner === true && currentPlayer === "computer"){
             result.style.cssText = "display:flex;";
             removeEvent();
-            announceText.textContent = "The Winner is O";
+            announceText.textContent = "You Lose!";
         }
         else if(winner === false && findRemainingTile(currentBoard).length === 0){ 
             result.style.cssText = "display:flex;";
@@ -134,15 +180,10 @@ const module = (function(){
         return remainingTiles;
     }
 
-    // const removeArrayElement = (value) =>{
-    //     let index = currentBoard.indexOf(value);   //find index of value
-    //     currentBoard.splice(index, 1);             //remove that value from array
-    // }
-
-    // const pickRandomTile = (array) =>{
-    //     let randomIndex = Math.floor(Math.random()*(array.length));
-    //     return array[randomIndex];
-    // }
+    const pickRandomTile = (array) =>{
+        let randomIndex = Math.floor(Math.random()*(array.length));
+        return array[randomIndex];
+    }
 
     function minimax(board, depth, currentMark) {           //adding depth because trying the fastest way to win.
         let availableTile = findRemainingTile(board);

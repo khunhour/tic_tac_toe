@@ -1,4 +1,3 @@
-
 html{
     width: 100%;
     height: 100%;
@@ -21,17 +20,15 @@ body{
     z-index: 1;
     align-items: center;
     justify-content: center;
-    
     background-color: rgba(0, 0, 0, 0.699);
 }
 .container{
-    width: 550px;
     display: flex;
-    flex:0 0 auto;
     flex-direction: column;
     align-items:center;
     background-color: rgb(27, 1, 39);
-    justify-self:center;
+    justify-content: space-between;
+    flex:3;
 }
 .title{
     text-align: center;
@@ -59,7 +56,6 @@ body{
         text-shadow: none;
     }   
 }
-
 .redMark{
     font-size: 30px;
     color: rgb(252, 203, 195);
@@ -100,47 +96,42 @@ body{
     display:flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-around;
+    justify-content:flex-start;
     font-family: 'Pacifico', cursive;
-    flex: 0 1 0;
-    
+    flex: 1 1 0;
 }
 .chooseMark, .chooseMode{
-    border: solid 5px white;
     display: flex;
     flex-direction: column;
+    padding-bottom: 15px;
+    border-bottom: solid 5px white;
 }
 .marker, .mode{
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-around;
     
-}
-.rightPane{
-    display: flex;
-    flex-direction: column;
-    font-family: 'Pacifico', cursive;
-    flex:1;
 }
 .glow{
     font-family: 'Pacifico', cursive;;
     text-align: center;
     color: white;
     font-size: 30px;
-    margin: 20px 0;
+    margin: 10px 0;
     box-sizing: border-box;
     text-shadow: 0 0 5px #fa40fa, 0 0 6px #fa1ffa, 0 0 9px #f804f8, 0 0 11px #cc03cc, 0 0 15px #a803a8;
 }
 .restart, .markButton, .modeButton{
-    background-color: purple;
-    padding: 10px 30px;;
-    margin: 0 15px;
+    background-color: transparent;
+    padding: 5px 30px;
+    margin: 10px 15px;
     border-radius: 20px;
     border: solid 2px white;
     box-shadow:  0 0 5px #fa40fa, 0 0 6px #fa1ffa, 0 0 9px #f804f8, 0 0 11px #cc03cc, 0 0 15px #a803a8;
     border-radius: 10px;
-
-    
+}
+.purple{
+    background-color: purple;
 }
 button{
     transition: transform 0.15s ease-in-out;
@@ -149,6 +140,15 @@ button:hover{
     cursor: pointer;
     transform: scale(1.05);
 }
-.footer{
-    display: none;
+img{
+    width: 30px;
+    height:30px;
+    background-color: white;
+    border-radius: 50%;
+    border: solid 2px white;
+    margin-bottom: -5px;
+    margin-left: 10px;
+}
+img:hover{
+    background-color: rgb(245, 53, 245);
 }
