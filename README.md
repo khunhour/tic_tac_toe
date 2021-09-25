@@ -12,4 +12,4 @@
   - pop up result
 # Functionality that are not yet fixed or have
   - on the first human move, it takes a while until computer move is reveal.(more calculation due to minimax function)
-
+  - optional: medium mode 
