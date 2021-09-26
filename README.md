@@ -1,7 +1,11 @@
-# tic_tac_toe
+# Tic Tac Toe Game
   - create a tic tac toe game
   - A project of The Odin Project
   - check out the live preview here: https://khunhour.github.io/tic_tac_toe/
+# Build With
+  - HTML5
+  - CSS
+  - JavaScript
 # Functionality
   - able to choose X or O mark for yourself
   - able to choose easy & hard mode

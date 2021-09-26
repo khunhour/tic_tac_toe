@@ -96,9 +96,11 @@ const module = (function(){
             
             currentBoard[tileNum] = humanMark;                  //update current board      
             winner = checkWin(currentBoard, humanMark);         //check to see if there is a winner
-            declareWinner(winner);                              
-            currentPlayer = "computer";                         //player2's turn now
-            markComputerTile();                                 //passing turn to computer
+            declareWinner(winner); 
+            if(!winner){
+                currentPlayer = "computer";                         //player2's turn now
+                markComputerTile();                                 //passing turn to computer
+            }                             
         }
     };
 

@@ -35,7 +35,7 @@ body{
     color: white;
     font-family: 'Monoton', cursive;
     font-size: 70px;
-    margin: 20px 0;
+    
     box-sizing: border-box;
     text-shadow: 0 0 5px #5bf04d, 0 0 6px #1ee90c, 0 0 9px #1dd404, 0 0 11px #029e0a, 0 0 15px #149903;
 }
@@ -58,11 +58,13 @@ body{
 }
 .redMark{
     font-size: 30px;
+    margin:auto 0;
     color: rgb(252, 203, 195);
     text-shadow: 0 0 5px #fa0404, 0 0 10px #e00404, 0 0 15px #be0303, 0 0 20px #a10101, 0 0 20px #8d0202;
 }
 .blueMark{
     font-size: 30px;
+    margin:auto 0;
     color:rgb(207, 246, 252);
     text-shadow: 0 0 5px #0852db, 0 0 10px #074ac7, 0 0 15px #063faa, 0 0 20px #05368f, 0 0 20px #042c77;
 }
@@ -76,11 +78,14 @@ body{
     gap: 15px;
 }
 .tile{
+    width: 130px;
+    height:130px;
     font-size: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: transparent;
+    box-sizing: border-box;
     border: solid 2px white;
     box-shadow: 0 0 5px #fafd3a, 0 0 10px #f9fd17, 0 0 15px #ecf005, 0 0 20px #d4d803, 0 0 20px #acaf02;
     border-radius: 10px;
